@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from utils import *
-
+from src.estimators import *
+from src.simulator import *
 
 def find_a_hat(X_matrix, Y):
     X_T_X = np.matmul(np.transpose(X_matrix), X_matrix)
@@ -38,6 +39,7 @@ if __name__ == '__main__':
     f_X = calculating_f_X(X_matrix, A)
     Y = create_y_sample(f_X)
     a_hat = find_a_hat(X_matrix, Y)
+
     est_f_X = calculating_f_X(X_matrix, a_hat)
-    plot_estimation(X, f_X, Y, est_f_X, "Least Square Estimator Vs. Real",
-                    "C:\\Users\\IdoYe\\PycharmProjects\\Computational_Methods_046197\\Wet_1\\Estimator_Vs_Real.png")
+
+    plot_estimation(X, f_X, Y, est_f_X, "Least Square Estimator Vs. Real","Estimator_Vs_Real.png")

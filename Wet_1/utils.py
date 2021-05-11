@@ -1,6 +1,6 @@
 import numpy as np
 
-# np.random.seed(47)
+np.random.seed(47)
 
 
 class Consts(object):
@@ -31,7 +31,8 @@ def calculating_sample_gradiant_by_a(X_sample, y_sample, a):
 
 def create_y_sample(f_X):
     m = len(f_X)
-    noise = np.random.normal(loc=0, scale=np.sqrt(0.5), size=m)
+    mu, sigma = 0, np.sqrt(0.5)
+    noise = np.random.normal(loc=mu, scale=sigma, size=m)
     return f_X + noise
 
 
@@ -40,19 +41,18 @@ def create_X_matrix(X, n):
 
 
 def L_2_norm(vector):
-    return np.linalg.norm(vector, ord=2)
+    return np.linalg.norm(vector)
 
 
 def in_ball(vector, r):
     return L_2_norm(vector) <= r
 
 
-def project_2_ball(v, r):
-    L_2_v = L_2_norm(v)
-    if L_2_v <= r:
-        return v
-    else:
-        return v * (r / L_2_v)
+def project_2_ball(a, r):
+    l_2_norm = L_2_norm(a)
+    if l_2_norm <= r:
+        return a
+    return r * a / l_2_norm
 
 
 def h(X, y, a, m):
