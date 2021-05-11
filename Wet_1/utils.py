@@ -1,6 +1,6 @@
 import numpy as np
 
-np.random.seed(47)
+# np.random.seed(47)
 
 
 class Consts(object):
@@ -23,6 +23,10 @@ def calculating_problem_gradiant_by_a(X_matrix, y, a):
     m = len(y)
     X_T_X = np.matmul(np.transpose(X_matrix), X_matrix)
     return (1 / m) * (-np.matmul(np.transpose(X_matrix), y) + np.matmul(X_T_X, a))
+
+
+def calculating_sample_gradiant_by_a(X_sample, y_sample, a):
+    return - np.transpose(X_sample) * (y_sample - X_sample @ a)
 
 
 def create_y_sample(f_X):

@@ -1,10 +1,10 @@
 from step_size import *
 import matplotlib.pyplot as plt
-from Part_1 import find_a_hat
+from part_1 import find_a_hat
 
 
 def projected_gradiant_descent(X_matrix, y, m, n, r, epsilon, iterations, step_size: Step_Size):
-    a_0 = np.random.normal(loc=0, scale=1, size=n + 1)
+    a_0 = np.random.randn(n+1,)
     a_vec = [project_2_ball(a_0, r)]
     for t in range(iterations):
         a_t = a_vec[t]
