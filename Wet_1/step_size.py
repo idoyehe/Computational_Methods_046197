@@ -23,7 +23,7 @@ class Step_Size_Per_t(Step_Size):
         self.current_iteration = 0
         self.D = 2 * r
         max_lambda = np.max(np.linalg.eigvals(np.matmul(np.transpose(X_matrix), X_matrix)))
-        self.G = 2 * r * max_lambda + L_2_norm(np.matmul(np.transpose(X_matrix), y))
+        self.G = (2 * r * max_lambda) + L_2_norm(np.matmul(np.transpose(X_matrix), y))
         self.G /= m
 
 

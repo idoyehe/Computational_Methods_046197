@@ -1,6 +1,5 @@
 import numpy as np
-
-np.random.seed(47)
+# np.random.seed(47)
 
 
 class Consts(object):
@@ -12,17 +11,21 @@ class Consts(object):
 
 
 def generate_x_vector(m: int = Consts.M):
-    return 2 * np.random.rand(m) - 1
+    return np.array([np.random.uniform(low=-1, high=1.0) for _ in range(m)])
 
 
-def calculating_f_X(X_matrix, A):
+def create_X_matrix(X, n):
+    return np.array([[x_i ** j for j in range(n + 1)] for x_i in X])
+
+
+def calculating_f_X_matrix(X_matrix, A):
     return X_matrix @ A
 
 
 def calculating_problem_gradiant_by_a(X_matrix, y, a):
     m = len(y)
-    X_T_X = np.matmul(np.transpose(X_matrix), X_matrix)
-    return (1 / m) * (-np.matmul(np.transpose(X_matrix), y) + np.matmul(X_T_X, a))
+    X_T_X = np.transpose(X_matrix) @ X_matrix
+    return (1 / m) * (-np.transpose(X_matrix) @ y + X_T_X @ a)
 
 
 def calculating_sample_gradiant_by_a(X_sample, y_sample, a):
@@ -34,12 +37,8 @@ def create_y_sample(f_X):
     mu, sigma = 0, np.sqrt(0.5)
     y = []
     for i in range(m):
-        y.append(f_X[i] + np.random.normal(loc=mu, scale=sigma, size=1)[0])
+        y.append(f_X[i] + np.random.normal(loc=mu, scale=sigma))
     return np.array(y)
-
-
-def create_X_matrix(X, n):
-    return np.array([[x_i ** j for j in range(n + 1)] for x_i in X])
 
 
 def L_2_norm(vector):
@@ -52,7 +51,7 @@ def in_ball(vector, r):
 
 def project_2_ball(a, r):
     l_2_norm = L_2_norm(a)
-    if l_2_norm <= r:
+    if in_ball(a, r):
         return a
     return r * a / l_2_norm
 
@@ -62,4 +61,4 @@ def h(X, y, a, m):
 
 
 def calc_L(X_matrix, m):
-    return max(np.linalg.eigvals(np.matmul(np.transpose(X_matrix), X_matrix) / m))
+    return np.max(np.linalg.eigvals(np.transpose(X_matrix) @ X_matrix)) / m

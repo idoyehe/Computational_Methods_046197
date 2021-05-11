@@ -44,7 +44,7 @@ if __name__ == '__main__':
     r = Consts.R
 
     X_matrix = create_X_matrix(generate_x_vector(m), n)
-    f_X = calculating_f_X(X_matrix, A)
+    f_X = calculating_f_X_matrix(X_matrix, A)
     Y = create_y_sample(f_X)
     L = calc_L(X_matrix, m)
 
@@ -57,7 +57,7 @@ if __name__ == '__main__':
                a_estimators=[adaGrad_estimators, inverse_estimators],
                labels=['AdaGrad Error', 'Decreasing Learning Rate Error'],
                colors=['green', 'red'],
-               title='AdaGrad LR Error Vs. Decreasing LR Error',
+               title='Step Size AdaGrad Error Vs. Step Size $\eta_t = \\frac{D}{G\sqrt{t}}$ Error',
                fig_path="Adagrad_decrease_error.png",
                r=r, m=m, X_matrix=X_matrix, y=Y)
 
@@ -69,7 +69,7 @@ if __name__ == '__main__':
                a_estimators=[constant_1_10L, constant_1_L, constant_10_L],
                labels=[r'$\eta_t = \frac{1}{10L}$', r'$\eta_t = \frac{1}{L}$', r'$\eta_t = \frac{10}{L}$'],
                colors=['yellow', 'green', "red"],
-               title='Estimation error evaluations with constant step sizes',
+               title='Estimation error evaluations with constants step size',
                fig_path="estimation_error_of_constant_step_size.png",
                r=r, m=m, X_matrix=X_matrix, y=Y)
 

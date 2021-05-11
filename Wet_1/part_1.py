@@ -34,10 +34,10 @@ if __name__ == '__main__':
 
     X = generate_x_vector(m)
     X_matrix = create_X_matrix(X,n)
-    f_X = calculating_f_X(X_matrix, A)
+    f_X = calculating_f_X_matrix(X_matrix, A)
     Y = create_y_sample(f_X)
     a_hat = find_a_hat(X_matrix, Y)
 
-    est_f_X = calculating_f_X(X_matrix, a_hat)
+    est_f_X = calculating_f_X_matrix(X_matrix, a_hat)
 
     plot_estimation(X, f_X, Y, est_f_X, "Least Square Estimator Vs. Real","Estimator_Vs_Real.png")
