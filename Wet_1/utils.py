@@ -12,7 +12,7 @@ class Consts(object):
 
 
 def generate_x_vector(m: int = Consts.M):
-    return np.random.uniform(low=-1.0, high=1.0, size=m)
+    return 2 * np.random.rand(m) - 1
 
 
 def calculating_f_X(X_matrix, A):
@@ -32,8 +32,10 @@ def calculating_sample_gradiant_by_a(X_sample, y_sample, a):
 def create_y_sample(f_X):
     m = len(f_X)
     mu, sigma = 0, np.sqrt(0.5)
-    noise = np.random.normal(loc=mu, scale=sigma, size=m)
-    return f_X + noise
+    y = []
+    for i in range(m):
+        y.append(f_X[i] + np.random.normal(loc=mu, scale=sigma, size=1)[0])
+    return np.array(y)
 
 
 def create_X_matrix(X, n):

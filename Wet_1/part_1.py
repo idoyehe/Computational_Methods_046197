@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 from utils import *
-from src.estimators import *
-from src.simulator import *
 
 def find_a_hat(X_matrix, Y):
     X_T_X = np.matmul(np.transpose(X_matrix), X_matrix)
