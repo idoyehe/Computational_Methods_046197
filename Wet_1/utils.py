@@ -1,6 +1,8 @@
-import numpy as np
-# np.random.seed(47)
+import random
 
+import numpy as np
+np.random.seed(47)
+random.seed(47)
 
 class Consts(object):
     N = 3
