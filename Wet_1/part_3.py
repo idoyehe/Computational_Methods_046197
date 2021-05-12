@@ -6,7 +6,6 @@ from part_2 import plot_error
 import time
 
 
-# np.random.seed(5)
 
 def projected_stochastic_gradiant_descent(X_matrix, y, m, n, r, iterations, step_size: Step_Size, batch_size):
     def grad_1_samp(x_sample, y_sample, a):
